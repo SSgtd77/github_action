@@ -6,8 +6,13 @@ on:
       - completed
 
 jobs:
-  run-action-complete:
+  success-command:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: List Files and Copy Repository
-        run: echo "Action Complete"
+      - run: echo "Success"
+  failure-command:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - run: echo "Faild"
