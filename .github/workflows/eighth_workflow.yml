@@ -7,6 +7,17 @@ on:
         type: string
         required: true
         default: "Text in title"
+      selectCustom:
+        description: Select Value
+        type: choice
+        required: true
+        options:
+          - Value 1
+          - Value 2
+          - Value 3
+          - Value 4
+          - Value 5
+        default: "Value 2"
 
 jobs:
   run-first-command:
@@ -15,3 +26,4 @@ jobs:
       - name: Event Vars
         run: |
           echo "Title: ${{ inputs.titleCustom }}"
+          echo "Value: ${{ inputs.selectCustom }}"
