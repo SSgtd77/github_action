@@ -1,6 +1,12 @@
 name: Eighth WorkFlow
 on:
   workflow_dispatch:
+    inputs:
+      titleCustom:
+        description: Type the Title
+        type: string
+        required: true
+        default: "Text in title"
 
 jobs:
   run-first-command:
