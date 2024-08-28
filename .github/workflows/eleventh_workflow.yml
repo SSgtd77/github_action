@@ -1,5 +1,6 @@
 name: Eleventh WorkFlow
 on: [push]
+run-name: "Environment Variables"
 env:
   WF_CUSTOM_VAR: WF 1
 jobs:
@@ -8,6 +9,8 @@ jobs:
     env:
       JOB_CUSTOM_VAR: JOB 1
     steps:
+      - name: Set New Var
+        run: echo "NEW_CUSTOM_VAR=New Value" >> "$GITHUB_ENV"
       - name: Vars
         env:
           STEP_CUSTOM_VAR: STEP 1
@@ -19,3 +22,4 @@ jobs:
           echo '${{ env.WF_CUSTOM_VAR }}'
           echo $JOB_CUSTOM_VAR
           echo $STEP_CUSTOM_VAR
+          echo $NEW_CUSTOM_VAR
