@@ -11,11 +11,11 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-cache-file-${{ hashFiles('**/') }}
+          key: ${{ runner.os }}-cache-file-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-cache-file-
             ${{ runner.os }}-
       - name: Display Cache
         run: echo '${{ toJson(steps.cache-step.outputs) }}'
       - name: Install node_molules
-        run: npm install
+        run: npm install  
