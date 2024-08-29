@@ -1,14 +1,15 @@
 name: Thirteenth WorkFlow
 on: push
-run-name: "Disable Failure Step"
+run-name: "Failure with conditions"
 
 jobs:
   # failure() success() always() cancelled()
   job-first:
     runs-on: ubuntu-latest
     steps:
-      # - name: Failure Step
-      #   run: exit 1
+      - name: Failure Step
+        id: error-step
+        run: exit 1
       - name: Runs on Canceled
         if: ${{ cancelled() }}
         run: echo "Runs on Canceled"
@@ -19,11 +20,12 @@ jobs:
         if: ${{ success() }}
         run: echo "Runs on Success"
       - name: Runs on Failure
-        if: ${{ failure() }}
+        if: ${{ failure() && steps.error-step.conclusion == 'failure' }}
         run: echo "Runs on Failure"
   job-second:
     runs-on: ubuntu-latest
     needs: job-first
     if: ${{ failure() }}
     steps:
-      - run: echo "Job was failed"
+      - name: Second Job
+        run: echo "Job was failed"
