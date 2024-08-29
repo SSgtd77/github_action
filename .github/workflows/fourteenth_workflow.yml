@@ -10,9 +10,9 @@ jobs:
         id: cache-step
         uses: actions/cache@v3
         with:
-          path: ~/.nmp
+          path: ~/.npm
           key: "cache-file"
       - name: Display Cache
-        run: echo '${{ steps.cache-step.outputs }}'
+        run: echo '${{ toJson(steps.cache-step.outputs) }}'
       - name: Install node_molules
         run: npm install
