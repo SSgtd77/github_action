@@ -5,10 +5,10 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - name: Cache node_molules
         id: cache-step
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-cache-file-${{ hashFiles('**/package-lock.json') }}
