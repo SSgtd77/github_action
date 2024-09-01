@@ -4,6 +4,9 @@ on: push
 jobs:
   test-docker-container:
     runs-on: ubuntu-latest
+    services:
+      customMysql:
+        image: mysql
     container:
       image: node:22-alpine3.19
       # image: node:12
@@ -15,6 +18,8 @@ jobs:
       #   - docker_volumes:/volumes
       # options: --cpus 1
     steps:
+      - name: Display service image
+        run: echo '${{ toJSON(job.services) }}'
       - name: Display Node Version
         run: |
           node -v
