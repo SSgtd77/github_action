@@ -7,5 +7,6 @@ jobs:
     # timeout-minutes: 1
     steps:
       - name: Sleep Time
-        run: sleep 200
+        # run: sleep 200
+        run: sleep 30
         timeout-minutes: 1
